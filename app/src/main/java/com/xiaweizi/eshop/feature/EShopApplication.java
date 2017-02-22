@@ -4,10 +4,6 @@ import android.app.Application;
 
 import com.squareup.leakcanary.LeakCanary;
 
-/**
- * Created by gqq on 2017/2/21.
- */
-
 public class EShopApplication extends Application {
 
     @Override

@@ -10,10 +10,7 @@
         android:layout_height="match_parent"
         android:background="@android:color/white"/>
 
-    <!--第三方控件：圆点指示器-->
-<!--
-
-    <me.relex.circleindicator.CircleIndicator
+    <com.feicuiedu.eshop.base.widgets.banner.BannerIndicator
         android:id="@+id/indicator"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_45"
@@ -21,6 +18,5 @@
         android:layout_centerHorizontal="true"
         app:ci_drawable="@drawable/indicator_yellow_radius"
         app:ci_drawable_unselected="@drawable/white_radius"/>
--->
 
 </merge>

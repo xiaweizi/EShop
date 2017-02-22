@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <tabs>
     <tab
-        id="@+id/tab_home"
+        barColorWhenSelected="#ff0000"
         icon="@drawable/ic_tab_home"
+        id="@+id/tab_home"
         title="@string/main_home" />
     <tab
-        id="@+id/tab_category"
+        barColorWhenSelected="#84ff00"
         icon="@drawable/ic_tab_category"
+        id="@+id/tab_category"
         title="@string/main_category" />
     <tab
-        id="@+id/tab_cart"
+        barColorWhenSelected="#00fbff"
         icon="@drawable/ic_tab_cart"
-        title="@string/main_shopping_cart"/>
+        id="@+id/tab_cart"
+        title="@string/main_shopping_cart" />
     <tab
-        id="@+id/tab_mine"
+        barColorWhenSelected="#8800ff"
         icon="@drawable/ic_tab_mine"
+        id="@+id/tab_mine"
         title="@string/main_mine" />
 </tabs>

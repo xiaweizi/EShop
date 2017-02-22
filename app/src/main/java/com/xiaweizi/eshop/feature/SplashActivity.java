@@ -2,13 +2,11 @@ package com.xiaweizi.eshop.feature;
 
 import android.animation.Animator;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
-import com.feicuiedu.eshop_0221.R;
-import com.feicuiedu.eshop_0221.base.utils.LogUtils;
+import com.xiaweizi.eshop.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
