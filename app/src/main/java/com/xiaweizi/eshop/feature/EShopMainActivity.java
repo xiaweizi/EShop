@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 import com.xiaweizi.eshop.R;
-import com.xiaweizi.eshop.base.utils.LogUtils;
 import com.xiaweizi.eshop.feature.cart.CartFragment;
 import com.xiaweizi.eshop.feature.category.CategoryFragment;
 import com.xiaweizi.eshop.feature.home.HomeFragment;
