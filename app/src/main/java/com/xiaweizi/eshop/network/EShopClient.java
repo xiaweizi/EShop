@@ -35,7 +35,6 @@ public class EShopClient {
         return instance;
     }
 
-
     private boolean mShowLog = false;
 
     private EShopClient() {

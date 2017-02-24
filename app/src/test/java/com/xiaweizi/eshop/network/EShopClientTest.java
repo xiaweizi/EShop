@@ -4,13 +4,12 @@ package com.xiaweizi.eshop.network;
 import com.google.gson.Gson;
 import com.xiaweizi.eshop.network.entity.CategoryRsp;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import okhttp3.Call;
 import okhttp3.Response;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 
 public class EShopClientTest {
