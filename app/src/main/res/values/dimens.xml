@@ -1,12 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
            tools:ignore="UnusedResources">
 
-    <!-- 字体大小 -->
-    <dimen name="font_huge">18sp</dimen>
-    <dimen name="font_large">16sp</dimen>
-    <dimen name="font_normal">14sp</dimen>
-    <dimen name="font_small">12sp</dimen>
-    <dimen name="font_small_fixed">12dp</dimen>
 
     <!-- 视图间距 -->
     <dimen name="spacing_huge">40dp</dimen>
@@ -36,5 +30,13 @@
 
     <!-- 视图Z轴高度 -->
     <dimen name="elevation_app_bar">4dp</dimen>
+
+
+    <!-- 字体大小 -->
+    <dimen name="font_huge">18sp</dimen>
+    <dimen name="font_large">16sp</dimen>
+    <dimen name="font_normal">14sp</dimen>
+    <dimen name="font_small">12sp</dimen>
+    <dimen name="font_small_fixed">12dp</dimen>
 
 </resources>

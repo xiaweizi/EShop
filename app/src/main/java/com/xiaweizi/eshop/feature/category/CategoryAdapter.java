@@ -1,7 +1,6 @@
 package com.xiaweizi.eshop.feature.category;
 
 
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -47,7 +46,7 @@ public class CategoryAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
         if (convertView == null) {
-            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_primary_category, null);
+            convertView = View.inflate(parent.getContext(), R.layout.item_primary_category, null);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
         }

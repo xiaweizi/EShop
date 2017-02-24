@@ -39,18 +39,20 @@ public class EShopClient {
 
     private EShopClient() {
         mGson = new Gson();
-        HttpLoggingInterceptor mLoggingInterceptor = new HttpLoggingInterceptor(
-                new HttpLoggingInterceptor.Logger() {
-
-                    @Override
-                    public void log(String message) {
-                        if (mShowLog) System.out.println(message); // NOPMD
-                    }
-                }
-        );
-        mLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+//        HttpLoggingInterceptor mLoggingInterceptor = new HttpLoggingInterceptor(
+//                new HttpLoggingInterceptor.Logger() {
+//
+//                    @Override
+//                    public void log(String message) {
+//                        if (mShowLog) System.out.println(message); // NOPMD
+//                    }
+//                }
+//        );
+//        mLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         mOkHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(mLoggingInterceptor)
+                .addInterceptor(interceptor)
                 .build();
     }
 
@@ -58,7 +60,7 @@ public class EShopClient {
     public Call getCategory() {
         Request request = new Request.Builder()
                 .get()
-                .url(BASE_URL + "/category")
+                .url(BASE_URL + "/category") //http://106.14.32.204/eshop/emobile/?url=/category
                 .build();
         return mOkHttpClient.newCall(request);
     }

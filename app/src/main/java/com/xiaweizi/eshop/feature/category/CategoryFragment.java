@@ -17,17 +17,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.xiaweizi.eshop.R;
 import com.xiaweizi.eshop.network.EShopClient;
 import com.xiaweizi.eshop.network.core.UICallback;
+import com.xiaweizi.eshop.network.entity.CategoryBase;
 import com.xiaweizi.eshop.network.entity.CategoryPrimary;
+import com.xiaweizi.eshop.network.entity.CategoryRsp;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnItemClick;
 import okhttp3.Call;
 import okhttp3.Response;
 
@@ -48,6 +51,7 @@ public class CategoryFragment extends Fragment {
     ListView mListChildren;
 
     private List<CategoryPrimary> mPrimaryList;
+    private List<CategoryBase> mChilderList;
 
     private CategoryAdapter mPrimaryAdapter;
     private ChildrenAdapter mChildrenAdapter;
@@ -59,7 +63,6 @@ public class CategoryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_category, null);
         ButterKnife.bind(this, view);
 
-        mPrimaryList = new ArrayList<>();
         mPrimaryAdapter = new CategoryAdapter();
         mChildrenAdapter = new ChildrenAdapter();
 
@@ -84,29 +87,62 @@ public class CategoryFragment extends Fragment {
         //拿到数据
         if (mPrimaryList != null){
             // 更新UI
-
+            updateCategory();
         } else {
             // 通过网络请求获取数据
             Call categoryCall = EShopClient.getInstance().getCategory();
             categoryCall.enqueue(new UICallback() {
+
                 @Override
-                public void onUiFailure(Call call, IOException e) {
-                    Log.e(TAG, "onUiFailure: " + e.getMessage());
+                public void onFailureInUI(Call call, IOException e) {
+                    Log.i(TAG, "onFailureInUI: " + e.getMessage());
                 }
 
                 @Override
-                public void onUiResponse(Call call, Response response) {
-                    try {
-                        Log.i(TAG, "onUiResponse: " + response.body().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        Log.i(TAG, "onUiResponse: " + e.getMessage());
+                public void onResponseInUI(Call call, Response response) throws IOException {
+//                    Log.i(TAG, "一开始: " + response.body().string());
+                    if (response.isSuccessful()) {
+                        CategoryRsp categoryRsp = new Gson().fromJson(response.body().string(), CategoryRsp.class);
+                        if (categoryRsp.getStatus().isSucceed()) {
+                            mPrimaryList = categoryRsp.getData();
+                            // 数据有了之后，更新UI
+                            updateCategory();
+                        }
+                    }else {
+                        Log.i(TAG, "response失败: " + response.body().string());
                     }
                 }
             });
         }
 
     }
+
+    private void updateCategory() {
+        mPrimaryAdapter.reset(mPrimaryList);
+        // 切换展示二级分类
+        chooseCategory(0);
+    }
+
+    // 用于根据一级分类的选项展示二级分类的内容
+    private void chooseCategory(int position) {
+        mListCategory.setItemChecked(position, true);
+        mChildrenAdapter.reset(mPrimaryAdapter.getItem(position).getChildren());
+    }
+
+    /**
+     * 点击一级分类的时候，展示相应的二级分类
+     */
+    @OnItemClick(R.id.list_category)
+    public void onItemClick(int position){
+        chooseCategory(position);
+    }
+    @OnItemClick(R.id.list_children)
+    public void onChildrenItemClick(int position){
+        // TODO: 2017/2/24 跳转到相应的界面
+        String name = mChilderList.get(position).getName();
+        Toast.makeText(getActivity(), name, Toast.LENGTH_SHORT).show();
+    }
+
 
     private void initToolbar(){
         //Fragment显示选项菜单
